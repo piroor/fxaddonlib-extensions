@@ -20,10 +20,8 @@
      var dir = extensions.getInstalledLocation('my.extension.id@example.com'); // nsILocalFile
 
  license: The MIT License, Copyright (c) 2009-2010 YUKI "Piro" Hiroshi
-   http://github.com/piroor/fxaddonlibs/blob/master/license.txt
  original:
-   http://github.com/piroor/fxaddonlibs/blob/master/extensions.js
-   http://github.com/piroor/fxaddonlibs/blob/master/extensions.test.js
+   http://github.com/piroor/fxaddonlib-extensions
 */
 
 /* To work as a JS Code Module */
