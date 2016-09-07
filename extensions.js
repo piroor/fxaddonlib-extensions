@@ -50,10 +50,7 @@ if (typeof window == 'undefined' ||
 	const Cc = Components.classes;
 	const Ci = Components.interfaces;
 
-	// Firefox 3.7 or later
-	var AM = {};
-	if ('@mozilla.org/addons/integration;1' in Cc)
-		Components.utils.import('resource://gre/modules/AddonManager.jsm', AM);
+	var { AddonManager } = Components.utils.import('resource://gre/modules/AddonManager.jsm', {});
 
 	window['piro.sakura.ne.jp'].extensions = {
 		revision : currentRevision,
@@ -85,7 +82,7 @@ if (typeof window == 'undefined' ||
 		isInstalled : function(aId, aOKCallback, aNGCallback)
 		{
 			var callbacks = this._formatCallbacks(aOKCallback, aNGCallback);
-			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+			AddonManager.getAddonByID(aId, function(aAddon) {
 				callbacks[aAddon ? 'ok' : 'ng']();
 			});
 		},
@@ -94,7 +91,7 @@ if (typeof window == 'undefined' ||
 		isEnabled : function(aId, aOKCallback, aNGCallback)
 		{
 			var callbacks = this._formatCallbacks(aOKCallback, aNGCallback);
-			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+			AddonManager.getAddonByID(aId, function(aAddon) {
 				callbacks[aAddon && aAddon.isActive ? 'ok' : 'ng']();
 			});
 		},
@@ -102,7 +99,7 @@ if (typeof window == 'undefined' ||
 
 		getInstalledLocation : function(aId, aCallback)
 		{
-			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+			AddonManager.getAddonByID(aId, function(aAddon) {
 				var location = null;
 				if (aAddon)
 					location = aAddon.getResourceURI('/').QueryInterface(Ci.nsIFileURL).file.clone();
@@ -112,7 +109,7 @@ if (typeof window == 'undefined' ||
 
 		getVersion : function(aId, aCallback)
 		{
-			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+			AddonManager.getAddonByID(aId, function(aAddon) {
 				aCallback(aAddon ? aAddon.version : null );
 			});
 		},
@@ -124,7 +121,7 @@ if (typeof window == 'undefined' ||
 			var callback = function(aURI) {
 					self.goToOptionsInternal(aURI, aOwnerWindow);
 				};
-			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+			AddonManager.getAddonByID(aId, function(aAddon) {
 				callback(aAddon && aAddon.isActive ? aAddon.optionsURL : null );
 			});
 		},
