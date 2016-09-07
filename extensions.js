@@ -85,36 +85,36 @@ if (typeof window == 'undefined' ||
 		isInstalled : function(aId, aOKCallback, aNGCallback)
 		{
 			var callbacks = this._formatCallbacks(aOKCallback, aNGCallback);
-				AM.AddonManager.getAddonByID(aId, function(aAddon) {
-					callbacks[aAddon ? 'ok' : 'ng']();
-				});
+			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+				callbacks[aAddon ? 'ok' : 'ng']();
+			});
 		},
 
 
 		isEnabled : function(aId, aOKCallback, aNGCallback)
 		{
 			var callbacks = this._formatCallbacks(aOKCallback, aNGCallback);
-				AM.AddonManager.getAddonByID(aId, function(aAddon) {
-					callbacks[aAddon && aAddon.isActive ? 'ok' : 'ng']();
-				});
+			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+				callbacks[aAddon && aAddon.isActive ? 'ok' : 'ng']();
+			});
 		},
 
 
 		getInstalledLocation : function(aId, aCallback)
 		{
-				AM.AddonManager.getAddonByID(aId, function(aAddon) {
-					var location = null;
-					if (aAddon)
-						location = aAddon.getResourceURI('/').QueryInterface(Ci.nsIFileURL).file.clone();
-					aCallback(location);
-				});
+			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+				var location = null;
+				if (aAddon)
+					location = aAddon.getResourceURI('/').QueryInterface(Ci.nsIFileURL).file.clone();
+				aCallback(location);
+			});
 		},
 
 		getVersion : function(aId, aCallback)
 		{
-				AM.AddonManager.getAddonByID(aId, function(aAddon) {
-					aCallback(aAddon ? aAddon.version : null );
-				});
+			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+				aCallback(aAddon ? aAddon.version : null );
+			});
 		},
 
 
@@ -124,9 +124,9 @@ if (typeof window == 'undefined' ||
 			var callback = function(aURI) {
 					self.goToOptionsInternal(aURI, aOwnerWindow);
 				};
-				AM.AddonManager.getAddonByID(aId, function(aAddon) {
-					callback(aAddon && aAddon.isActive ? aAddon.optionsURL : null );
-				});
+			AM.AddonManager.getAddonByID(aId, function(aAddon) {
+				callback(aAddon && aAddon.isActive ? aAddon.optionsURL : null );
+			});
 		},
 		goToOptionsInternal : function(aURI, aOwnerWindow)
 		{
